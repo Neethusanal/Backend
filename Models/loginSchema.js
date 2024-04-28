@@ -10,3 +10,4 @@ const loginSchema= new mongoose.Schema({
         required:true
     }
 })
+module.exports=LoginModel= mongoose.model('loginData',loginSchema)

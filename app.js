@@ -1,4 +1,5 @@
 const express = require('express');
+const LoginModel=require('./Models/loginSchema')
 
 require('dotenv').config();
 const app=express()
@@ -23,4 +24,15 @@ app.get('/signup',(req,res)=>{
 app.get('/',(req,res)=>{
   
     res.render("home")
+})
+app.post('/signup',(req,res)=>{
+ const data={
+    name:req.body.username,
+    password:req.body.password
+
+
+ }
+ console.log(data)
+ await LoginModel.insertMany({data})
+
 })
