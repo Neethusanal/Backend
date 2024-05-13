@@ -27,22 +27,22 @@ app.get('/',(req,res)=>{
     res.render("home")
 })
 app.post('/signup',async(req,res)=>{
-    try{
-        const data={
-            name:req.body.username,
-            password:req.body.password
-        
-        
-         }
+ 
+         const data={email:req.body.name,password:req.body.password}
          console.log(data)
-         await LoginModel.insertMany({data})
-         res.render('home')
+        
+        
+        
+          const user= new LoginModel(data)
+         user.save().then(()=>{
+            console.log("user saved succesfully",data)
+            res.render('home')
+         }).catch((err)=>{
+console.log(err)
+         })
+        
          
-    }
-    catch(err)
-    {
-        console.log(err)
-    }
+  
 
     
  
