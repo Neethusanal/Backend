@@ -1,5 +1,6 @@
 const express = require('express');
 const LoginModel=require('./Models/loginSchema')
+const mongoose=require('./configuration/mongodb')
 
 require('dotenv').config();
 const app=express()
@@ -25,14 +26,24 @@ app.get('/',(req,res)=>{
   
     res.render("home")
 })
-app.post('/signup',(req,res)=>{
- const data={
-    name:req.body.username,
-    password:req.body.password
+app.post('/signup',async(req,res)=>{
+    try{
+        const data={
+            name:req.body.username,
+            password:req.body.password
+        
+        
+         }
+         console.log(data)
+         await LoginModel.insertMany({data})
+         res.render('home')
+         
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
 
-
- }
- console.log(data)
- await LoginModel.insertMany({data})
-
+    
+ 
 })
