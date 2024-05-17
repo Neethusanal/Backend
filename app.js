@@ -6,6 +6,8 @@ require('dotenv').config();
 const app=express()
 const hbs = require('hbs');
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
 
 const port= process.env.PORT 
 app.listen(port,()=>{
@@ -27,8 +29,8 @@ app.get('/',(req,res)=>{
     res.render("home")
 })
 app.post('/signup',async(req,res)=>{
- 
-         const data={email:req.body.name,password:req.body.password}
+         console.log("hi ")
+         const data={email:req.body.email,password:req.body.password}
          console.log(data)
         
         
